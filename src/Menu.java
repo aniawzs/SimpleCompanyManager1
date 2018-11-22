@@ -4,16 +4,18 @@ import companyModules.Employees;
 import managers.AssetsManager;
 import managers.CompanyManager;
 import managers.EmployeesManager;
+import managers.FinancialAssetsManager;
 import utils.Printer;
 
 import java.util.Scanner;
 
-public class Menu {
+class Menu {
     private Printer printer;
     private Scanner scanner;
     private EmployeesManager employeesManager;
     private CompanyManager companyManager;
     private AssetsManager assetsManager;
+    private FinancialAssetsManager financialAssetsManager;
 
 
     Menu() {
@@ -22,6 +24,7 @@ public class Menu {
         this.employeesManager = new EmployeesManager();
         this.companyManager = new CompanyManager();
         this.assetsManager = new AssetsManager();
+        this.financialAssetsManager = new FinancialAssetsManager();
     }
 
     private Printer getPrinter() {
@@ -42,6 +45,10 @@ public class Menu {
 
     private AssetsManager getAssetsManager() {
         return assetsManager;
+    }
+
+    private FinancialAssetsManager getFinancialAssetsManager(){
+        return financialAssetsManager;
     }
 
 
@@ -69,7 +76,7 @@ public class Menu {
                     runEmployeesModule(company);
                     break;
                 case "3":
-
+                    runFinancialAssetsModule(company);
                     break;
                 case "4":
                     runAssetsModule(company);
@@ -231,6 +238,53 @@ public class Menu {
 
 
         } while (isModulRunning);
+    }
+
+    private void runFinancialAssetsModule(Company company) {
+        boolean isModulRunning = true;
+        int cashValue;
+
+        String choice;
+        while (isModulRunning) {
+            getPrinter().print("Wybierz : \n" +
+                    "1. Zobacz wszystkie środki pieniężne i bieżącą wartość aktywów trwałych.\n" +
+                    "2. Dodaj środki pieniężne\n" +
+                    "3. Usuń środki pieniężne \n" +
+                    "4. Wypłata wynagrodzeń \n" +
+                    "5. Amortyzacja sprzętu \n" +
+                    "6. Wyjdź z modułu zarządzanie środkami finansowymi");
+
+            choice = getScanner().next();
+            switch (choice) {
+                case "1":
+                    getFinancialAssetsManager().showAllFinancialAssets(company);
+                    break;
+                case "2":
+                    printer.print("Podaj wartość środków pieniężnych");
+                     cashValue= scanner.nextInt();
+
+                    company.addCash(cashValue);
+                    break;
+                case "3":
+                    printer.print("Podaj wartość środków pieniężnych do usunięcia");
+                    cashValue = scanner.nextInt();
+                    if(!getFinancialAssetsManager().canISpendCash(company, cashValue)){
+                        getPrinter().print("Podana wartość jest wyższa od wartości posiadanych środków pieniężnych");
+                    } else {
+                        company.spendCash(cashValue);
+                        getPrinter().print("środki pieniężne został usunięte");
+                    }
+                    break;
+                case "4":
+
+                    break;
+                case "5":
+
+                case "6":
+                    isModulRunning = false;
+                    getPrinter().print("Moduł zarządzanie środkami finansowymi zostanie zamknięty.");
+            }
+        }
     }
 
     private void runAssetsModule(Company company) {

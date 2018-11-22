@@ -4,7 +4,6 @@ import companyModules.Company;
 import companyModules.Employees;
 
 public class EmployeesManager {
-    //zatrudnianie pracownika
     public void addNewEmployee(Company company, Employees employee) {
         for (int i = 0; i < company.getEmployees().length; i++) {
             if (company.getEmployees()[i] == null) {
@@ -29,7 +28,7 @@ public class EmployeesManager {
     }
 
 
-    //zwolenienie
+
     public void fireEmployee(Company company, int employeeIndexToDelete) {
         company.getEmployees()[employeeIndexToDelete] = null;
 

@@ -20,20 +20,8 @@ public class Employees {
         return name;
     }
 
-    public void setName(String name){
-        this.name  = name;
-    }
-
     public int getAge(){
         return age;
-    }
-
-    private void setAge(int age){
-        this.age = age;
-    }
-
-    public int getSalary(){
-        return salary;
     }
 
     public void setSalary(int salary){
@@ -46,10 +34,6 @@ public class Employees {
 
     public void setPosition(String position){
         this.position = position;
-    }
-
-    public void setLastname(String lastname){
-        this.lastname = lastname;
     }
 
     public String getLastname(){

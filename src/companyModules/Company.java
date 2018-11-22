@@ -8,25 +8,27 @@ public class Company {
     private double startUpCapital;
     private Employees[] employees;
     private Assets[] assets;
+    private int financialAssets;
 
-    public Company(String companyName,String headquarters, String address, double startUpCapital){
+    public Company(String companyName, String headquarters, String address, double startUpCapital) {
         this.companyName = companyName;
         this.headquarters = headquarters;
         this.address = address;
         this.startUpCapital = startUpCapital;
         this.employees = new Employees[20];
         this.assets = new Assets[0];
+        this.financialAssets = 0;
     }
 
-    public Employees[] getEmployees(){
+    public Employees[] getEmployees() {
         return employees;
     }
 
-    public void setCompanyName(String companyName){
+    public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
-    public String getCompanyName(){
+    public String getCompanyName() {
         return companyName;
     }
 
@@ -54,11 +56,23 @@ public class Company {
         this.startUpCapital = startUpCapital;
     }
 
-    public Assets[] getAssets(){
+    public Assets[] getAssets() {
         return assets;
     }
 
-    public void setAssets(Assets[] assets){
+    public void setAssets(Assets[] assets) {
         this.assets = assets;
+    }
+
+    public int getFinancialAssets() {
+        return financialAssets;
+    }
+
+    public void addCash(int cashValue){
+        financialAssets += cashValue;
+    }
+
+    public void spendCash(int cashValue){
+        financialAssets -= cashValue;
     }
 }
