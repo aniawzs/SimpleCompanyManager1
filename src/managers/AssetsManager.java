@@ -19,11 +19,10 @@ public class AssetsManager {
             if (company.getAssets()[i] != null) {
                 printer.print("Nazwa sprzętu: " + company.getAssets()[i].getAssetName() + ", typ sprzetu: " +
                         company.getAssets()[i].getAssetType() + ", wartość sprzętu: " + company.getAssets()[i].getAssetValue() +
-                        ", stopa amortyzacji: " + company.getAssets()[i].getDepreciationRate());
+                        ", stopa amortyzacji: " + company.getAssets()[i].getDepreciationRate() + "%");
             }
         }
     }
-
 
     public void addAsset(Company company, Assets assets) {
         for (int i = 0; i < company.getAssets().length; i++) {
@@ -35,7 +34,6 @@ public class AssetsManager {
         company.setAssets(Arrays.copyOf(company.getAssets(), company.getAssets().length + 1));
         company.getAssets()[company.getAssets().length - 1] = assets;
     }
-
 
     public boolean canCompanyDeleteAsset(Company company, int assetIndex) {
         if (assetIndex >= company.getAssets().length) {

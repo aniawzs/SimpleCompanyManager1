@@ -52,8 +52,8 @@ public class FinancialAssetsManager {
     public void calculateDepreciationRate(Company company) {
         for (int i = 0; i < company.getAssets().length; i++) {
             if (company.getAssets()[i] != null) {
-                company.getAssets()[i].setAssetValue(company.getAssets()[i].getAssetValue()
-                        - company.getAssets()[i].getAssetValue() * company.getAssets()[i].getDepreciationRate());
+                company.getAssets()[i].setAssetValue(company.getAssets()[i].getAssetValue() -
+                        company.getAssets()[i].getAssetValue() * company.getAssets()[i].getDepreciationRate() / 100);
             }
         }
     }

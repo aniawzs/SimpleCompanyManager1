@@ -60,9 +60,9 @@ public class EmployeesManager {
 
     public boolean canCompanyChangeEmployeeSettings(Company company, int employeeIndex) {
         if (employeeIndex >= company.getEmployees().length) {
-            return false;
+            return true;
         } else {
-            return company.getEmployees()[employeeIndex] != null;
+            return company.getEmployees()[employeeIndex] == null;
         }
     }
 

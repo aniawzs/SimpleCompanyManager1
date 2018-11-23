@@ -4,9 +4,9 @@ public class Assets {
     private String assetName;
     private String assetType;
     private double assetValue;
-    private double depreciationRate;
+    private int depreciationRate;
 
-    public Assets(String assetName, String assetType, double assetValue, double depreciationRate) {
+    public Assets(String assetName, String assetType, double assetValue, int depreciationRate) {
         this.assetName = assetName;
         this.assetType = assetType;
         this.assetValue = assetValue;
@@ -17,16 +17,8 @@ public class Assets {
         return assetName;
     }
 
-    public void setAssetName(String assetName) {
-        this.assetName = assetName;
-    }
-
     public String getAssetType() {
         return assetType;
-    }
-
-    public void setAssetType(String assetType) {
-        this.assetType = assetType;
     }
 
     public double getAssetValue() {
@@ -37,11 +29,7 @@ public class Assets {
         this.assetValue = assetValue;
     }
 
-    public double getDepreciationRate() {
+    public int getDepreciationRate() {
         return depreciationRate;
-    }
-
-    public void setDepreciationRate(int depreciationRate) {
-        this.depreciationRate = depreciationRate;
     }
 }

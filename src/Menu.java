@@ -89,8 +89,8 @@ class Menu {
 
     private void runCompanyModule(Company company) {
         boolean isModulRunning = true;
-
         String choice;
+
         while (isModulRunning) {
             getPrinter().print("Wybierz : \n" +
                     "1. Informacje o firmie \n" +
@@ -132,6 +132,7 @@ class Menu {
 
                     getCompanyManager().changeStartUpCapital(company, newStartUpCapital);
                     getPrinter().print("Kapitał zakładowy został zmieniony");
+                    break;
                 case "6":
                     isModulRunning = false;
                     getPrinter().print("Moduł zarządzanie firmą zostanie zamknięty.");
@@ -142,11 +143,10 @@ class Menu {
 
     private void runEmployeesModule(Company company) {
         boolean isModulRunning = true;
-
         String choice;
         int employeeIndex;
 
-        do {
+        while (isModulRunning) {
             getPrinter().print("Wybierz : \n" +
                     "1. Zatrudnienia \n" +
                     "2. Wyświetlanie pracowników \n" +
@@ -177,7 +177,7 @@ class Menu {
 
                     if (getEmployeesManager().canCompanyAddEmployee(company, employee)) {
                         getEmployeesManager().addNewEmployee(company, employee);
-                        getPrinter().print("Nowy pracownik został dodany do listy wszystkich pracowników");
+                        getPrinter().print("Nowy pracownik został dodany do listy pracowników");
                     } else {
                         getPrinter().print("Nie można dodać pracownika, ponieważ pracownik o danym imieniu i " +
                                 "nazwisku już istnieje w bazie danych.");
@@ -186,7 +186,6 @@ class Menu {
                 case "2":
                     getEmployeesManager().showAllEmployees(company);
                     break;
-
                 case "3":
                     getPrinter().print("Podaj numer indeksu pracownika do zwolnienia.");
                     employeeIndex = getScanner().nextInt();
@@ -203,11 +202,11 @@ class Menu {
                     getPrinter().print("Podaj index pracownika, dla którego zostanie zmienione stanowisko");
                     employeeIndex = getScanner().nextInt();
 
-                    if (!getEmployeesManager().canCompanyChangeEmployeeSettings(company, employeeIndex)) {
+                    if (getEmployeesManager().canCompanyChangeEmployeeSettings(company, employeeIndex)) {
                         getPrinter().print("Nie możesz zmienić stanowiska dla pracownika o podanym indeksie.");
                     } else {
                         getPrinter().print("Podaj nazwę nowego stanowiska");
-                        String newPosition = getScanner().nextLine();
+                        String newPosition = getScanner().next();
 
                         getEmployeesManager().changeEmployeePosition(company, employeeIndex, newPosition);
                         getPrinter().print("Stanowisko pracownika zostało zmienione");
@@ -217,7 +216,7 @@ class Menu {
                     getPrinter().print("Podaj index pracownika, dla którego zostanie zmienione wynagrodzenie");
                     employeeIndex = getScanner().nextInt();
 
-                    if (!getEmployeesManager().canCompanyChangeEmployeeSettings(company, employeeIndex)) {
+                    if (getEmployeesManager().canCompanyChangeEmployeeSettings(company, employeeIndex)) {
                         getPrinter().print("Nie możesz zmienić wynagrodzenia dla pracownika o podanym indeksie");
                     } else {
                         getPrinter().print("Podaj nową wysokość wynagrodzenia");
@@ -226,20 +225,19 @@ class Menu {
                         getEmployeesManager().giveARise(company, employeeIndex, newSalary);
                         getPrinter().print("Wynagrodzenie zostało zmienione dla pracownika o indeksie: " + employeeIndex);
                     }
+                    break;
                 case "6":
                     isModulRunning = false;
                     getPrinter().print("Moduł pracowniczy zostanie zamknięty");
             }
-
-
-        } while (isModulRunning);
+        }
     }
 
     private void runFinancialAssetsModule(Company company) {
         boolean isModulRunning = true;
         int cashValue;
-
         String choice;
+
         while (isModulRunning) {
             getPrinter().print("Wybierz : \n" +
                     "1. Zobacz wszystkie środki pieniężne i bieżącą wartość aktywów trwałych.\n" +
@@ -286,7 +284,7 @@ class Menu {
                         getFinancialAssetsManager().calculateDepreciationRate(company);
                         getPrinter().print("Wartość środków trwałych została pomniejszona o stopę amortyzacji");
                     }
-
+                    break;
                 case "6":
                     isModulRunning = false;
                     getPrinter().print("Moduł zarządzanie środkami finansowymi zostanie zamknięty.");
@@ -323,7 +321,7 @@ class Menu {
                     int assetValue = scanner.nextInt();
 
                     getPrinter().print("Podaj stopę amortyzacji");
-                    double depreciationRate = scanner.nextDouble();
+                    int depreciationRate = scanner.nextInt();
 
                     Assets asset = new Assets(assetName, assetType, assetValue, depreciationRate);
                     getAssetsManager().addAsset(company, asset);
