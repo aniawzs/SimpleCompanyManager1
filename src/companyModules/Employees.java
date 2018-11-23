@@ -8,7 +8,7 @@ public class Employees {
     private String position;
 
 
-    public Employees(String name, String lastname, int age, int salary, String position){
+    public Employees(String name, String lastname, int age, int salary, String position) {
         this.name = name;
         this.lastname = lastname;
         this.age = age;
@@ -16,31 +16,31 @@ public class Employees {
         this.position = position;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public int getAge(){
+    public int getAge() {
         return age;
     }
 
-    public void setSalary(int salary){
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 
-    public int getSalary(){
+    public int getSalary() {
         return salary;
     }
 
-    public String getPosition(){
+    public String getPosition() {
         return position;
     }
 
-    public void setPosition(String position){
+    public void setPosition(String position) {
         this.position = position;
     }
 
-    public String getLastname(){
+    public String getLastname() {
         return lastname;
     }
 }

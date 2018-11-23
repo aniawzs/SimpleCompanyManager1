@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 public class EmployeesManager {
     private Printer printer = new Printer();
+
     public void addNewEmployee(Company company, Employees employee) {
         for (int i = 0; i < company.getEmployees().length; i++) {
             if (company.getEmployees()[i] == null) {
@@ -16,8 +17,8 @@ public class EmployeesManager {
             }
         }
 
-        company.setEmployees(Arrays.copyOf(company.getEmployees(), company.getEmployees().length +1));
-        company.getEmployees()[company.getEmployees().length -1] = employee;
+        company.setEmployees(Arrays.copyOf(company.getEmployees(), company.getEmployees().length + 1));
+        company.getEmployees()[company.getEmployees().length - 1] = employee;
     }
 
     public boolean canCompanyAddEmployee(Company company, Employees employee) {
@@ -38,7 +39,7 @@ public class EmployeesManager {
     }
 
     public void showAllEmployees(Company company) {
-        if(company.getEmployees().length ==0){
+        if (company.getEmployees().length == 0) {
             printer.print("Lista pracowników jest pusta");
             return;
         }

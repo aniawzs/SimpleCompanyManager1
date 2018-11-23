@@ -158,30 +158,30 @@ class Menu {
             choice = getScanner().next();
             switch (choice) {
                 case "1":
-                        getPrinter().print("Podaj imię pracownika");
-                        String name = getScanner().next();
+                    getPrinter().print("Podaj imię pracownika");
+                    String name = getScanner().next();
 
-                        getPrinter().print("Podaj nazwisko pracownika");
-                        String lastname = getScanner().next();
+                    getPrinter().print("Podaj nazwisko pracownika");
+                    String lastname = getScanner().next();
 
-                        getPrinter().print("Podaj wiek pracownika");
-                        int age = getScanner().nextInt();
+                    getPrinter().print("Podaj wiek pracownika");
+                    int age = getScanner().nextInt();
 
-                        getPrinter().print("Podaj wysokość wynagrodzenia pracownika");
-                        int salary = getScanner().nextInt();
+                    getPrinter().print("Podaj wysokość wynagrodzenia pracownika");
+                    int salary = getScanner().nextInt();
 
-                        getPrinter().print("Podaj stanowisko pracy");
-                        String position = getScanner().next();
+                    getPrinter().print("Podaj stanowisko pracy");
+                    String position = getScanner().next();
 
-                        Employees employee = new Employees(name, lastname, age, salary, position);
+                    Employees employee = new Employees(name, lastname, age, salary, position);
 
-                        if (getEmployeesManager().canCompanyAddEmployee(company, employee)) {
-                            getEmployeesManager().addNewEmployee(company, employee);
-                            getPrinter().print("Nowy pracownik został dodany do listy wszystkich pracowników");
-                        } else {
-                            getPrinter().print("Nie można dodać pracownika, ponieważ pracownik o danym imieniu i " +
-                                    "nazwisku już istnieje w bazie danych.");
-                        }
+                    if (getEmployeesManager().canCompanyAddEmployee(company, employee)) {
+                        getEmployeesManager().addNewEmployee(company, employee);
+                        getPrinter().print("Nowy pracownik został dodany do listy wszystkich pracowników");
+                    } else {
+                        getPrinter().print("Nie można dodać pracownika, ponieważ pracownik o danym imieniu i " +
+                                "nazwisku już istnieje w bazie danych.");
+                    }
                     break;
                 case "2":
                     getEmployeesManager().showAllEmployees(company);
@@ -272,7 +272,7 @@ class Menu {
                     }
                     break;
                 case "4":
-                    if(getFinancialAssetsManager().canCompanyPaySalary(company)){
+                    if (getFinancialAssetsManager().canCompanyPaySalary(company)) {
                         getPrinter().print("Firma ma za mało środków pieniężnych na wypłatę wynagrodzeń");
                     } else {
                         getFinancialAssetsManager().paySalary(company);
@@ -280,7 +280,7 @@ class Menu {
                     }
                     break;
                 case "5":
-                    if(!getFinancialAssetsManager().canCompanyCalculateDepreciationRate(company)){
+                    if (!getFinancialAssetsManager().canCompanyCalculateDepreciationRate(company)) {
                         getPrinter().print("Brak środków trwałych w firmie - nie możesz policzyć stopy amortyzacji");
                     } else {
                         getFinancialAssetsManager().calculateDepreciationRate(company);

@@ -72,11 +72,11 @@ public class Company {
         return financialAssets;
     }
 
-    public void addCash(double cashValue){
+    public void addCash(double cashValue) {
         financialAssets += cashValue;
     }
 
-    public void spendCash(double cashValue){
+    public void spendCash(double cashValue) {
         financialAssets -= cashValue;
     }
 }
