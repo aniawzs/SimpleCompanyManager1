@@ -1,3 +1,5 @@
+package menu;
+
 import companyModules.Assets;
 import companyModules.Company;
 import companyModules.Employees;
@@ -9,7 +11,7 @@ import utils.Printer;
 
 import java.util.Scanner;
 
-class Menu {
+public class Menu {
     private Printer printer;
     private Scanner scanner;
     private EmployeesManager employeesManager;
@@ -18,7 +20,7 @@ class Menu {
     private FinancialAssetsManager financialAssetsManager;
 
 
-    Menu() {
+    public Menu() {
         this.printer = new Printer();
         this.scanner = new Scanner(System.in);
         this.employeesManager = new EmployeesManager();
@@ -52,7 +54,7 @@ class Menu {
     }
 
 
-    void runMainMenu() {
+    public void runMainMenu() {
         boolean isProgramRunning = true;
         String choice;
         getPrinter().print("Witaj w programie do zarządzania Twoją firmą!");
