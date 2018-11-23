@@ -47,7 +47,7 @@ class Menu {
         return assetsManager;
     }
 
-    private FinancialAssetsManager getFinancialAssetsManager(){
+    private FinancialAssetsManager getFinancialAssetsManager() {
         return financialAssetsManager;
     }
 
@@ -158,9 +158,6 @@ class Menu {
             choice = getScanner().next();
             switch (choice) {
                 case "1":
-                    if (getEmployeesManager().employeesListIsFull(company)) {
-                        getPrinter().print("Nie możesz dodać pracownika bo lista jest pełna.");
-                    } else {
                         getPrinter().print("Podaj imię pracownika");
                         String name = getScanner().next();
 
@@ -178,25 +175,23 @@ class Menu {
 
                         Employees employee = new Employees(name, lastname, age, salary, position);
 
-                        if (getEmployeesManager().canIAddEmployee(company, employee)) {
+                        if (getEmployeesManager().canCompanyAddEmployee(company, employee)) {
                             getEmployeesManager().addNewEmployee(company, employee);
-                            getPrinter().print("Nowy pracownik został dodany do listy wszystkich pracowników.");
+                            getPrinter().print("Nowy pracownik został dodany do listy wszystkich pracowników");
                         } else {
-                            getPrinter().print("Nie można dodać pracownika ponieważ pracownik o danym imieniu i +" +
+                            getPrinter().print("Nie można dodać pracownika, ponieważ pracownik o danym imieniu i " +
                                     "nazwisku już istnieje w bazie danych.");
                         }
-                    }
                     break;
                 case "2":
-                    getPrinter().print("Oto lista pracowników firmy " + company.getCompanyName());
-
                     getEmployeesManager().showAllEmployees(company);
                     break;
+
                 case "3":
                     getPrinter().print("Podaj numer indeksu pracownika do zwolnienia.");
                     employeeIndex = getScanner().nextInt();
 
-                    if (getEmployeesManager().canIChangeEmployeeSettings(company, employeeIndex)) {
+                    if (getEmployeesManager().canCompanyChangeEmployeeSettings(company, employeeIndex)) {
                         getPrinter().print("Nie możesz zwolnić pracownika o podanym indeksie.");
                     } else {
                         getEmployeesManager().fireEmployee(company, employeeIndex);
@@ -208,7 +203,7 @@ class Menu {
                     getPrinter().print("Podaj index pracownika, dla którego zostanie zmienione stanowisko");
                     employeeIndex = getScanner().nextInt();
 
-                    if (!getEmployeesManager().canIChangeEmployeeSettings(company, employeeIndex)) {
+                    if (!getEmployeesManager().canCompanyChangeEmployeeSettings(company, employeeIndex)) {
                         getPrinter().print("Nie możesz zmienić stanowiska dla pracownika o podanym indeksie.");
                     } else {
                         getPrinter().print("Podaj nazwę nowego stanowiska");
@@ -222,7 +217,7 @@ class Menu {
                     getPrinter().print("Podaj index pracownika, dla którego zostanie zmienione wynagrodzenie");
                     employeeIndex = getScanner().nextInt();
 
-                    if (!getEmployeesManager().canIChangeEmployeeSettings(company, employeeIndex)) {
+                    if (!getEmployeesManager().canCompanyChangeEmployeeSettings(company, employeeIndex)) {
                         getPrinter().print("Nie możesz zmienić wynagrodzenia dla pracownika o podanym indeksie");
                     } else {
                         getPrinter().print("Podaj nową wysokość wynagrodzenia");
@@ -261,14 +256,15 @@ class Menu {
                     break;
                 case "2":
                     printer.print("Podaj wartość środków pieniężnych");
-                     cashValue= scanner.nextInt();
+                    cashValue = scanner.nextInt();
 
                     company.addCash(cashValue);
                     break;
                 case "3":
                     printer.print("Podaj wartość środków pieniężnych do usunięcia");
                     cashValue = scanner.nextInt();
-                    if(!getFinancialAssetsManager().canISpendCash(company, cashValue)){
+
+                    if (!getFinancialAssetsManager().canCompanySpendCash(company, cashValue)) {
                         getPrinter().print("Podana wartość jest wyższa od wartości posiadanych środków pieniężnych");
                     } else {
                         company.spendCash(cashValue);
@@ -276,9 +272,20 @@ class Menu {
                     }
                     break;
                 case "4":
-
+                    if(getFinancialAssetsManager().canCompanyPaySalary(company)){
+                        getPrinter().print("Firma ma za mało środków pieniężnych na wypłatę wynagrodzeń");
+                    } else {
+                        getFinancialAssetsManager().paySalary(company);
+                        getPrinter().print("Wynagrodzenie zostało wypłacone pracownikom.");
+                    }
                     break;
                 case "5":
+                    if(!getFinancialAssetsManager().canCompanyCalculateDepreciationRate(company)){
+                        getPrinter().print("Brak środków trwałych w firmie - nie możesz policzyć stopy amortyzacji");
+                    } else {
+                        getFinancialAssetsManager().calculateDepreciationRate(company);
+                        getPrinter().print("Wartość środków trwałych została pomniejszona o stopę amortyzacji");
+                    }
 
                 case "6":
                     isModulRunning = false;
@@ -300,6 +307,7 @@ class Menu {
                     "4. Wyjdź z modułu zarządzanie sprzętem firmy");
 
             choice = getScanner().next();
+
             switch (choice) {
                 case "1":
                     getAssetsManager().showAllAssets(company);
@@ -324,7 +332,7 @@ class Menu {
                     getPrinter().print("Podaj indeks sprzętu do usunięcia");
                     assetIndex = scanner.nextInt();
 
-                    if (!getAssetsManager().canIDeleteAsset(company, assetIndex)) {
+                    if (!getAssetsManager().canCompanyDeleteAsset(company, assetIndex)) {
                         getPrinter().print("Nie możesz usunąć sprzętu o danym indeksie");
                     } else {
                         getAssetsManager().deleteAsset(company, assetIndex);

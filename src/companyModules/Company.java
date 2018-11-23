@@ -15,7 +15,7 @@ public class Company {
         this.headquarters = headquarters;
         this.address = address;
         this.startUpCapital = startUpCapital;
-        this.employees = new Employees[20];
+        this.employees = new Employees[0];
         this.assets = new Assets[0];
         this.financialAssets = 0;
     }
@@ -64,15 +64,19 @@ public class Company {
         this.assets = assets;
     }
 
+    public void setEmployees(Employees[] employees) {
+        this.employees = employees;
+    }
+
     public int getFinancialAssets() {
         return financialAssets;
     }
 
-    public void addCash(int cashValue){
+    public void addCash(double cashValue){
         financialAssets += cashValue;
     }
 
-    public void spendCash(int cashValue){
+    public void spendCash(double cashValue){
         financialAssets -= cashValue;
     }
 }

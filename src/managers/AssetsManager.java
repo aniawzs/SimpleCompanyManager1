@@ -11,8 +11,10 @@ public class AssetsManager {
 
     public void showAllAssets(Company company) {
         if (company.getAssets().length == 0) {
-            printer.print("Brak majątku firmy.");
+            printer.print("Firma nie posiada majątku trwałego");
+            return;
         }
+
         for (int i = 0; i < company.getAssets().length; i++) {
             if (company.getAssets()[i] != null) {
                 printer.print("Nazwa sprzętu: " + company.getAssets()[i].getAssetName() + ", typ sprzetu: " +
@@ -35,7 +37,7 @@ public class AssetsManager {
     }
 
 
-    public boolean canIDeleteAsset(Company company, int assetIndex) {
+    public boolean canCompanyDeleteAsset(Company company, int assetIndex) {
         if (assetIndex >= company.getAssets().length) {
             return false;
         } else {
@@ -45,11 +47,11 @@ public class AssetsManager {
                 }
             }
         }
-
         return true;
     }
 
     public void deleteAsset(Company company, int assetIndex) {
+        company.addCash(company.getAssets()[assetIndex].getAssetValue());
         company.getAssets()[assetIndex] = null;
     }
 }

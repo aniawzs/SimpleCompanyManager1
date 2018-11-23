@@ -28,6 +28,10 @@ public class Employees {
         this.salary = salary;
     }
 
+    public int getSalary(){
+        return salary;
+    }
+
     public String getPosition(){
         return position;
     }

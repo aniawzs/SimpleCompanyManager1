@@ -3,10 +3,10 @@ package companyModules;
 public class Assets {
     private String assetName;
     private String assetType;
-    private int assetValue;
+    private double assetValue;
     private double depreciationRate;
 
-    public Assets(String assetName, String assetType, int assetValue, double depreciationRate){
+    public Assets(String assetName, String assetType, double assetValue, double depreciationRate){
         this.assetName = assetName;
         this.assetType = assetType;
         this.assetValue = assetValue;
@@ -29,11 +29,11 @@ public class Assets {
         this.assetType = assetType;
     }
 
-    public int getAssetValue(){
+    public double getAssetValue(){
         return assetValue;
     }
 
-    public void setAssetValue(int assetValue){
+    public void setAssetValue(double assetValue){
         this.assetValue = assetValue;
     }
 
