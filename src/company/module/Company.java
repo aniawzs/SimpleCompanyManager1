@@ -1,4 +1,7 @@
-package companyModules;
+package company.module;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Company {
 
@@ -6,8 +9,8 @@ public class Company {
     private String headquarters;
     private String address;
     private double startUpCapital;
-    private Employees[] employees;
-    private Assets[] assets;
+    private List<Employee> employees;
+    private List<Asset> assets;
     private int financialAssets;
 
     public Company(String companyName, String headquarters, String address, double startUpCapital) {
@@ -15,12 +18,12 @@ public class Company {
         this.headquarters = headquarters;
         this.address = address;
         this.startUpCapital = startUpCapital;
-        this.employees = new Employees[0];
-        this.assets = new Assets[0];
+        this.employees = new ArrayList<>();
+        this.assets = new ArrayList<>();
         this.financialAssets = 0;
     }
 
-    public Employees[] getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
@@ -56,15 +59,15 @@ public class Company {
         this.startUpCapital = startUpCapital;
     }
 
-    public Assets[] getAssets() {
+    public List<Asset> getAssets() {
         return assets;
     }
 
-    public void setAssets(Assets[] assets) {
+    public void setAssets(List<Asset> assets) {
         this.assets = assets;
     }
 
-    public void setEmployees(Employees[] employees) {
+    public void setEmployees(List<Employee> employees) {
         this.employees = employees;
     }
 

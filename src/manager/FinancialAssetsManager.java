@@ -1,6 +1,8 @@
-package managers;
+package manager;
 
-import companyModules.Company;
+import company.module.Asset;
+import company.module.Company;
+import company.module.Employee;
 import utils.Printer;
 
 public class FinancialAssetsManager {
@@ -13,11 +15,10 @@ public class FinancialAssetsManager {
 
     private int assetsTotalValue(Company company) {
         int sum = 0;
-        for (int i = 0; i < company.getAssets().length; i++) {
-            if (company.getAssets()[i] != null) {
-                sum += company.getAssets()[i].getAssetValue();
-            }
+        for (Asset asset : company.getAssets()) {
+            sum += asset.getAssetValue();
         }
+
         return sum;
     }
 
@@ -33,11 +34,10 @@ public class FinancialAssetsManager {
     private int calculateEmployeesTotalSalary(Company company) {
         int totalSalaryValaue = 0;
 
-        for (int i = 0; i < company.getEmployees().length; i++) {
-            if (company.getEmployees()[i] != null) {
-                totalSalaryValaue += company.getEmployees()[i].getSalary();
-            }
+        for (Employee employee : company.getEmployees()) {
+            totalSalaryValaue += employee.getSalary();
         }
+
         return totalSalaryValaue;
     }
 
@@ -46,15 +46,13 @@ public class FinancialAssetsManager {
     }
 
     public boolean canCompanyCalculateDepreciationRate(Company company) {
-        return company.getAssets().length > 0;
+        return !company.getAssets().isEmpty();
     }
 
     public void calculateDepreciationRate(Company company) {
-        for (int i = 0; i < company.getAssets().length; i++) {
-            if (company.getAssets()[i] != null) {
-                company.getAssets()[i].setAssetValue(company.getAssets()[i].getAssetValue() -
-                        company.getAssets()[i].getAssetValue() * company.getAssets()[i].getDepreciationRate() / 100);
-            }
+        for (int i = 0; i < company.getAssets().size(); i++) {
+            company.getAssets().get(i).setAssetValue(company.getAssets().get(i).getAssetValue() -
+                    company.getAssets().get(i).getAssetValue() * company.getAssets().get(i).getDepreciationRate() / 100);
         }
     }
 }

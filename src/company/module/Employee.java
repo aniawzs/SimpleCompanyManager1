@@ -1,6 +1,6 @@
-package companyModules;
+package company.module;
 
-public class Employees {
+public class Employee {
     private String name;
     private String lastname;
     private int age;
@@ -8,7 +8,7 @@ public class Employees {
     private String position;
 
 
-    public Employees(String name, String lastname, int age, int salary, String position) {
+    public Employee(String name, String lastname, int age, int salary, String position) {
         this.name = name;
         this.lastname = lastname;
         this.age = age;

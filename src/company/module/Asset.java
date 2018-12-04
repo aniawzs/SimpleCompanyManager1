@@ -1,12 +1,12 @@
-package companyModules;
+package company.module;
 
-public class Assets {
+public class Asset {
     private String assetName;
     private String assetType;
     private double assetValue;
     private int depreciationRate;
 
-    public Assets(String assetName, String assetType, double assetValue, int depreciationRate) {
+    public Asset(String assetName, String assetType, double assetValue, int depreciationRate) {
         this.assetName = assetName;
         this.assetType = assetType;
         this.assetValue = assetValue;
