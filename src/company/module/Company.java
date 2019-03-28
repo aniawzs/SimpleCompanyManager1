@@ -13,6 +13,8 @@ public class Company {
     private List<Asset> assets;
     private int financialAssets;
 
+    public Company(){}
+
     public Company(String companyName, String headquarters, String address, double startUpCapital) {
         this.companyName = companyName;
         this.headquarters = headquarters;

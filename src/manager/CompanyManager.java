@@ -1,31 +1,86 @@
 package manager;
 
-        import company.module.Company;
-        import utils.Printer;
 
-        public class CompanyManager {
-        private Printer printer = new Printer();
+import company.module.Company;
+import utils.Printer;
 
-        public void showCompanyInformation(Company company) {
-        printer.print("Nazwa firmy: " + company.getCompanyName());
+import java.util.Scanner;
+
+public class CompanyManager extends ManagerUtils{
+    private Printer printer;
+    private Scanner scanner;
+    private Company company;
+    
+    public CompanyManager(){
+        this.printer = super.getPrinter();
+        this.scanner = super.getScanner();
+        this.company = super.getCompany();
+    }
+
+    public void showCompanyInformation() {
+        printer.print("Nazwa firmy: " + super.getCompany().getCompanyName());
         printer.print("Siedziba firmy: " + company.getHeadquarters());
         printer.print("Adres firmy: " + company.getAddress());
         printer.print("Kapital początkowy firmy: " + company.getStartUpCapital());
-        }
+    }
 
-        public void changeCompanyName(Company company, String newCompanyName) {
+    public void changeCompanyNameModule() {
+        printer.print("Podaj nową nazwę firmy");
+        String newCompanyName = scanner.next();
+
+        changeCompanyName(newCompanyName);
+        printer.print("Nazwa firmy została zmieniona");
+    }
+
+    public void changeStartUpCapitalModule() {
+        printer.print("Podaj nowy kapitał początkowy");
+        int newStartUpCapital = validateStartUpCapital();
+
+        changeStartUpCapital(newStartUpCapital);
+        printer.print("Kapitał zakładowy został zmieniony");
+    }
+
+    public void changeCompanyAddressModule() {
+        printer.print("Podaj nowy adres firmy");
+        String newAddress = scanner.next();
+
+        changeCompanyAddress(newAddress);
+        printer.print("Adres firmy został zmieniony");
+    }
+
+    public void changeHeadquarterModule() {
+        printer.print("Podaj nową siedzibę firmy");
+        String newHeadquarter = scanner.next();
+
+        changeCompanyHeadquarter(newHeadquarter);
+        printer.print("Siedziba firmy zostala zmieniona");
+    }
+
+    private void changeCompanyName(String newCompanyName) {
         company.setCompanyName(newCompanyName);
-        }
+    }
 
-        public void changeCompanyHeadquarter(Company company, String newHeadquarter) {
+    private void changeCompanyHeadquarter(String newHeadquarter) {
         company.setHeadquarters(newHeadquarter);
-        }
+    }
 
-        public void changeCompanyAddress(Company company, String newAddress) {
+    private void changeCompanyAddress(String newAddress) {
         company.setAddress(newAddress);
+    }
+
+    private void changeStartUpCapital(int newStartUpCapital) {
+        company.setStartUpCapital(newStartUpCapital);
+    }
+
+    private int validateStartUpCapital() {
+        int capitalToCheck = scanner.nextInt();
+
+        while (capitalToCheck < 0) {
+            printer.print("Kapitał początkowy nie może być mniejszy od 0");
+
+            capitalToCheck = scanner.nextInt();
         }
 
-        public void changeStartUpCapital(Company company, int newStartUpCapital) {
-        company.setStartUpCapital(newStartUpCapital);
-        }
-        }
+        return capitalToCheck;
+    }
+}
