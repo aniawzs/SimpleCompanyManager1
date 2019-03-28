@@ -1,4 +1,4 @@
-package utils;
+package main.utils;
 
 public class Printer {
     public void print(String textToPrint){

@@ -1,4 +1,4 @@
-package company.module;
+package main.modules;
 
 public class Asset {
     private String assetName;

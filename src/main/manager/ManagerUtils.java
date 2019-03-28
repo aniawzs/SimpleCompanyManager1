@@ -1,7 +1,7 @@
-package manager;
+package main.manager;
 
-import company.module.Company;
-import utils.Printer;
+import main.modules.Company;
+import main.utils.Printer;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package company.module;
+package main.modules;
 
 public class Employee {
     private String name;

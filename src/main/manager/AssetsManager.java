@@ -1,8 +1,8 @@
-package manager;
+package main.manager;
 
-import company.module.Asset;
-import company.module.Company;
-import utils.Printer;
+import main.modules.Asset;
+import main.modules.Company;
+import main.utils.Printer;
 
 import java.util.Scanner;
 

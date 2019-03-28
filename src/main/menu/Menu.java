@@ -1,9 +1,8 @@
-package menu;
+package main.menu;
 
-import company.module.Company;
-import company.module.Employee;
-import manager.*;
-import utils.Printer;
+import main.manager.*;
+import main.modules.Company;
+import main.utils.Printer;
 
 import java.util.Scanner;
 
